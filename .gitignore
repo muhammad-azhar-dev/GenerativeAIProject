@@ -34,3 +34,44 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# for python 
+# Byte-compiled / optimized / legacy Python files
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+*.egg-info/
+.eggs/
+
+# Environments
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store # macOS system file
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# Python specific locks and versions
+.python-version
+# lock files are generally recommended to be included in version control, 
+# but you might choose to ignore them for specific library projects.
+# Pipfile.lock
+# poetry.lock
+# uv.lock
+
