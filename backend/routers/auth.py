@@ -50,3 +50,12 @@ def login(user: schemas.UserLogin, db: Session = Depends(get_db)):
         "token_type": "bearer", # specify the type of token being returned (in this case, a bearer token)
         "user": {"id": db_user.id, "username": db_user.username, "email": db_user.email} # return the authenticated user's information in the response
     }
+
+@router.post("/logout")
+def logout():
+    """
+    On the backend, logout with JWT is simple. 
+    We return a success message, and the Next.js frontend 
+    will handle deleting the token from storage.
+    """
+    return {"message": "Successfully logged out"}
