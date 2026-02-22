@@ -19,7 +19,7 @@ app = FastAPI(title="Document Reader Assistant")
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # allow all origins to access the API
+    allow_origins=["http://localhost:3000"], # allow all origins to access the API
     allow_credentials=True, # allow cookies and other credentials to be included in cross-origin requests
     allow_methods=["*"], # allow all HTTP methods (GET, POST, PUT, DELETE, etc.) in cross-origin requests
     allow_headers=["*"], # allow all headers in cross-origin requests
