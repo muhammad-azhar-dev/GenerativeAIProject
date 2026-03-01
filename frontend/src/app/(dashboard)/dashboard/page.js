@@ -11,9 +11,9 @@ export default function Dashboard() {
 
     // Fetch user history on load
     useEffect(() => {
-        fetchHistory();
         const userData = JSON.parse(localStorage.getItem('user'));
         setUser(userData);
+        fetchHistory();
     }, []);
 
     const fetchHistory = async () => {
@@ -43,7 +43,7 @@ export default function Dashboard() {
             });
             fetchHistory(); // Refresh the list
         } catch (err) {
-            alert("Error generating content");
+            alert(err.response?.data?.detail || "Error generating content");
         } finally {
             setLoading(false);
         }

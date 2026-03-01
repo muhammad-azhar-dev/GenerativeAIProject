@@ -16,6 +16,7 @@ def get_db():
     try:
         yield db
     except Exception as e:
-        print(f"Database Connection Error")
+        print(f"DATABASE CONNECTION DEAD: {e}")
+        raise # This stops the route from running with a broken DB
     finally:
         db.close()

@@ -21,6 +21,7 @@ class UserOut(BaseModel):
 class ContentCreate(BaseModel):
     prompt: str
     file_path: str
+    plan: str
     owner_id: int
 
 # Schema for returning content (sent to Frontend)
@@ -29,6 +30,7 @@ class ContentOut(BaseModel):
     prompt: str
     file_path: str
     gemini_output: Optional[str] = None
+    plan: str
     owner_id: int
 
     model_config = ConfigDict(from_attributes=True)

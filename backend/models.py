@@ -18,6 +18,7 @@ class UserContent(Base):
     prompt = Column(String(500)) 
     file_path = Column(String(255)) # Path to the stored .jpg, .png, or .pdf
     gemini_output = Column(Text)    # Stores the text returned by Gemini 3 Flash
+    plan = Column(String, default="free") # added a plan field to track the user's subscription plan
     owner_id = Column(Integer, ForeignKey("users.id")) 
 
     owner = relationship("User", back_populates="contents")

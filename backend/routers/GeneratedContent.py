@@ -26,6 +26,21 @@ async def generate_ai_content(
     db: Session = Depends(get_db),
     current_user: models.User = Depends(verify_token) # <--- Security happens here
 ):
+    # --- 1. USAGE LIMIT LOGIC ---
+    # Count how many times this user has generated content
+    usage_count = db.query(models.UserContent).filter(models.UserContent.owner_id == current_user.id).count()
+
+    # If they are on the free plan and hit the limit
+    contents = db.query(models.UserContent).filter(
+            models.UserContent.owner_id == current_user.id
+        ).all()
+    if contents and contents[0].plan == "free" and usage_count >= 2:
+        print(f"User {current_user.username} has exceeded the free plan limit.")
+        raise HTTPException(
+        status_code=402, 
+        detail="Free plan limit exceeded. Please upgrade to continue generating content."
+    )
+    
     prompt = "Please analyze the content of the attached file and provide a summary along with any insights you can gather from it."
     # Validate file type
     file_ext = file.filename.split(".")[-1].lower()
@@ -79,8 +94,12 @@ def get_my_history(
     current_user: models.User = Depends(verify_token) # <--- Security happens here
 ):
     # We filter by current_user.id. Ali cannot see anyone else's data.
-    contents = db.query(models.UserContent).filter(
-        models.UserContent.owner_id == current_user.id
-    ).all()
-    
+    try:
+        contents = db.query(models.UserContent).filter(
+            models.UserContent.owner_id == current_user.id
+        ).all()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
+    if not contents:
+        return []
     return contents
