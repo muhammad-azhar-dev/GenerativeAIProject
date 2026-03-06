@@ -31,10 +31,8 @@ async def generate_ai_content(
     usage_count = db.query(models.UserContent).filter(models.UserContent.owner_id == current_user.id).count()
 
     # If they are on the free plan and hit the limit
-    contents = db.query(models.UserContent).filter(
-            models.UserContent.owner_id == current_user.id
-        ).all()
-    if contents and contents[0].plan == "free" and usage_count >= 2:
+    user = db.query(models.User).filter(models.User.id == current_user.id).first()
+    if user and user.plan == "free" and usage_count >= 2:
         print(f"User {current_user.username} has exceeded the free plan limit.")
         raise HTTPException(
         status_code=402, 

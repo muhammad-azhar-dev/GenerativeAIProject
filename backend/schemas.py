@@ -4,6 +4,7 @@ from typing import Optional
 class UserCreate(BaseModel):
     username: str
     email: str
+    plan: str
     password: str
 
 class UserLogin(BaseModel):
@@ -14,14 +15,13 @@ class UserOut(BaseModel):
     id: int
     username: str
     email: str
-    
+    plan: str
     model_config = ConfigDict(from_attributes=True)
 
 # Schema for creating content (sent to Backend)
 class ContentCreate(BaseModel):
     prompt: str
     file_path: str
-    plan: str
     owner_id: int
 
 # Schema for returning content (sent to Frontend)
@@ -30,7 +30,6 @@ class ContentOut(BaseModel):
     prompt: str
     file_path: str
     gemini_output: Optional[str] = None
-    plan: str
     owner_id: int
 
     model_config = ConfigDict(from_attributes=True)

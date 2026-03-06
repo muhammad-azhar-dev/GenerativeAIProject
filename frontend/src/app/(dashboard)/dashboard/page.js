@@ -44,6 +44,7 @@ export default function Dashboard() {
             fetchHistory(); // Refresh the list
         } catch (err) {
             alert(err.response?.data?.detail || "Error generating content");
+            window.location.href = '/subscription'; // Redirect to subscription on error    
         } finally {
             setLoading(false);
         }
