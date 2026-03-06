@@ -14,7 +14,7 @@
 
 # production
 /build
-backend/upload/
+backend/uploads/
 # misc
 .DS_Store
 *.pem
