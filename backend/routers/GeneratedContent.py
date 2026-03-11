@@ -5,9 +5,9 @@ from fastapi import APIRouter, Depends, UploadFile, File, Form, HTTPException
 from sqlalchemy.orm import Session
 from google import genai
 from google.genai import types
-from database import get_db
-import models, schemas
-from utils import verify_token
+from database.database import get_db
+import models.models as models, schemas.schemas as schemas
+from utils.utils import verify_token
 from dotenv import load_dotenv
 load_dotenv()
 router = APIRouter()

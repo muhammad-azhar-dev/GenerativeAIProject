@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware 
 from routers import GeneratedContent, auth, users, payment_gateway
-import models
-import database
+import models.models as models
+import database.database as database
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -33,5 +33,5 @@ def homeroot():
 # Include Routers
 app.include_router(auth.router)
 app.include_router(GeneratedContent.router)
-app.include_router(users.rounter)
+app.include_router(users.router)
 app.include_router(payment_gateway.router)

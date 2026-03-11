@@ -18,6 +18,14 @@ class UserOut(BaseModel):
     plan: str
     model_config = ConfigDict(from_attributes=True)
 
+class ChangePassword(BaseModel):
+    old_password: str
+    new_password: str
+
+class UpdateProfile(BaseModel):
+    username: Optional[str] = None
+    email: Optional[str] = None
+
 # Schema for creating content (sent to Backend)
 class ContentCreate(BaseModel):
     prompt: str

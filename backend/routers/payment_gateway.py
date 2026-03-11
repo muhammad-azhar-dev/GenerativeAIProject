@@ -2,9 +2,9 @@ import os
 import stripe
 from fastapi import Body, HTTPException, Depends, APIRouter
 from sqlalchemy.orm import Session
-from database import get_db
-from utils import verify_token
-import models
+from database.database import get_db
+from utils.utils import verify_token
+import models.models as models
 from dotenv import load_dotenv
 load_dotenv()
 
