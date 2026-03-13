@@ -20,7 +20,7 @@ class UserOut(BaseModel):
 
 class ChangePassword(BaseModel):
     old_password: str
-    new_password: str
+    password: str
 
 class UpdateProfile(BaseModel):
     username: Optional[str] = None

@@ -31,7 +31,7 @@ def change_password(password_data: schemas.ChangePassword,
         )
     # 3. Hash the new password
     # generate_password_hash(plain_text) -> returns hashed string
-    new_hashed_password = generate_password_hash(password_data.new_password)
+    new_hashed_password = generate_password_hash(password_data.password)
     
     # 4. Update the MySQL database
     current_user.password = new_hashed_password
